@@ -1,17 +1,10 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import MainNavbar from './components/MainNavbar.vue'
 </script>
 
 <template>
-  <header>
-    <div class="container-fluid">
-      <nav>
-        <RouterLink to="/">Home |</RouterLink>
-        <RouterLink to="/maps">Maps</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <MainNavbar />
   <RouterView />
 </template>
 

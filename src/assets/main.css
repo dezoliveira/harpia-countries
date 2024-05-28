@@ -1,5 +1,19 @@
 @import './base.css';
 
+a {
+  text-decoration: none;
+  transition: 0.4s;
+  color: #e7e6ea;
+}
+
+a:hover {
+  color: #5d6771;
+}
+
+main {
+  height: 100vh;
+}
+
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
