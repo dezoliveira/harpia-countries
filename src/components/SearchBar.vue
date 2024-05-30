@@ -22,7 +22,6 @@ export default {
       />
       <button class="btn btn-outline-secondary">Pesquisar</button>
     </div>
-    <h1>{{ this.inputText }}</h1>
   </div>
 </template>
 <style scoped>
