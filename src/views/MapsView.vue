@@ -1,8 +1,10 @@
 <script>
 import SearchBar from '@/components/SearchBar.vue'
+import GoogleMaps from '@/components/GoogleMaps.vue'
 export default {
   components: {
-    SearchBar
+    SearchBar,
+    GoogleMaps
   },
 
   data() {
@@ -38,6 +40,8 @@ export default {
         })
 
       this.country = filteredCountries
+
+      console.log(filteredCountries)
     }
   },
 
@@ -47,7 +51,7 @@ export default {
 }
 </script>
 <template>
-  <div class="container p-4">
+  <div class="container p-4 d-flex flex-column align-items-center justify-content-center gap-4">
     <SearchBar @input="handleInput" :input-text="this.country" />
     <div v-if="this.country">
       <ul v-for="c in this.country" :key="c.cioc">
@@ -56,6 +60,7 @@ export default {
         </li>
       </ul>
     </div>
+    <GoogleMaps />
   </div>
 </template>
 <style scoped></style>
