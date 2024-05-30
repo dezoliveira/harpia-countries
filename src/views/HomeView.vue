@@ -1,4 +1,6 @@
-<script setup></script>
+<script>
+export default {}
+</script>
 
 <template>
   <div class="container-fluid hero text-sm-start text-center">

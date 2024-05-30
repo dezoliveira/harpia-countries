@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <header>
     <div class="container-fluid p-0">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Brand</a>
           <button
