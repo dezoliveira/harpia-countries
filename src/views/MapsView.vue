@@ -60,7 +60,11 @@ export default {
         </li>
       </ul>
     </div>
-    <GoogleMaps />
+    <GoogleMaps
+      :lat="this.country ? this.country[0].latlng[0] : undefined"
+      :lng="this.country ? this.country[0].latlng[1] : undefined"
+      :target-country="this.country"
+    />
   </div>
 </template>
 <style scoped></style>

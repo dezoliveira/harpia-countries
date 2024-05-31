@@ -4,6 +4,19 @@
 
 <script>
 export default {
+  props: {
+    lat: {
+      type: Number,
+      default: -10
+    },
+    lng: {
+      type: Number,
+      default: -55
+    },
+    targetCountry: {
+      type: Object
+    }
+  },
   data() {
     return {
       country: {
@@ -17,14 +30,27 @@ export default {
     async loadMap() {
       const map = this.$refs.map
       await new window.google.maps.Map(map, {
-        center: this.country,
-        zoom: 4
+        center: {
+          lat: this.lat,
+          lng: this.lng
+        },
+        zoom: 3
       })
     }
   },
 
   mounted() {
+    console.log('lat', this.lat)
+    console.log('lng', this.lng)
+    console.log('country', this.country)
     this.loadMap()
+  },
+
+  updated() {
+    this.loadMap()
+    console.log('upd lat', this.lat)
+    console.log('upd lng', this.lng)
+    console.log('upd country', this.country)
   }
 }
 // import { onMounted, ref } from 'vue'
