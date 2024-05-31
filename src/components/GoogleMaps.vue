@@ -5,11 +5,15 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 const map = ref(null)
+const country = {
+  lat: -10,
+  lng: -55
+}
 
 onMounted(() => {
   new window.google.maps.Map(map.value, {
-    center: { lat: 45.4315296, lng: -75.6971931 },
-    zoom: 10
+    center: country,
+    zoom: 4
   })
 })
 </script>
