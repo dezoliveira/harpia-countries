@@ -14,7 +14,8 @@ export default {
       default: -55
     },
     targetCountry: {
-      type: Object
+      type: Object,
+      default: {}
     }
   },
   data() {
@@ -28,13 +29,39 @@ export default {
 
   methods: {
     async loadMap() {
+      // const map = this.$refs.map
+      // await new window.google.maps.Map(map, {
+      //   center: {
+      //     lat: this.lat,
+      //     lng: this.lng
+      //   },
+      //   zoom: 3
+      // })
+      const { Map } = await window.google.maps.importLibrary('maps')
       const map = this.$refs.map
-      await new window.google.maps.Map(map, {
+
+      new Map(map, {
         center: {
           lat: this.lat,
           lng: this.lng
         },
-        zoom: 3
+        position: {
+          lat: this.lat,
+          lng: this.lng
+        },
+        zoom: 4
+      })
+    },
+
+    async loadMarker() {
+      const { AdvancedMarkerElement } = await window.google.maps.importLibrary('marker')
+      const map = this.$refs.map
+
+      new AdvancedMarkerElement(map, {
+        position: {
+          lat: this.lat,
+          lng: this.lng
+        }
       })
     }
   },
@@ -44,6 +71,7 @@ export default {
     console.log('lng', this.lng)
     console.log('country', this.country)
     this.loadMap()
+    // this.loadMarker()
   },
 
   updated() {
@@ -53,19 +81,6 @@ export default {
     console.log('upd country', this.country)
   }
 }
-// import { onMounted, ref } from 'vue'
-// const map = ref(null)
-// const country = {
-//   lat: -10,
-//   lng: -55
-// }
-
-// onMounted(() => {
-//   new window.google.maps.Map(map.value, {
-//     center: country,
-//     zoom: 4
-//   })
-// })
 </script>
 
 <style>
