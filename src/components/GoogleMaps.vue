@@ -13,10 +13,7 @@ export default {
       type: Number,
       default: -55
     },
-    targetCountry: {
-      type: Object,
-      default: {}
-    }
+    targetCountry: []
   },
   data() {
     return {
@@ -48,6 +45,7 @@ export default {
       const { Map } = await window.google.maps.importLibrary('maps')
       const { AdvancedMarkerElement } = await window.google.maps.importLibrary('marker')
 
+      // google maps map
       const map = new Map(this.$refs.map, {
         center: {
           lat: this.lat,
@@ -57,6 +55,7 @@ export default {
         mapId: '4504f8b37365c3d0'
       })
 
+      // google maps marker
       const marker = new AdvancedMarkerElement({
         map,
         position: {
@@ -64,8 +63,6 @@ export default {
           lng: this.lng
         }
       })
-
-      marker.addListener('click', () => {})
     },
 
     async loadMarker() {
