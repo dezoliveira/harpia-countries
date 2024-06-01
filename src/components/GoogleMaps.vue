@@ -28,7 +28,7 @@ export default {
   },
 
   methods: {
-    async loadMap() {
+    async initMap() {
       // const map = this.$refs.map
       // await new window.google.maps.Map(map, {
       //   center: {
@@ -37,20 +37,35 @@ export default {
       //   },
       //   zoom: 3
       // })
-      const { Map } = await window.google.maps.importLibrary('maps')
-      const map = this.$refs.map
 
-      new Map(map, {
+      // new Map(map, {
+      //   center: {
+      //     lat: this.lat,
+      //     lng: this.lng
+      //   },
+      //   zoom: 2
+      // })
+      const { Map } = await window.google.maps.importLibrary('maps')
+      const { AdvancedMarkerElement } = await window.google.maps.importLibrary('marker')
+
+      const map = new Map(this.$refs.map, {
         center: {
           lat: this.lat,
           lng: this.lng
         },
+        zoom: 3,
+        mapId: '4504f8b37365c3d0'
+      })
+
+      const marker = new AdvancedMarkerElement({
+        map,
         position: {
           lat: this.lat,
           lng: this.lng
-        },
-        zoom: 4
+        }
       })
+
+      marker.addListener('click', () => {})
     },
 
     async loadMarker() {
@@ -70,12 +85,12 @@ export default {
     console.log('lat', this.lat)
     console.log('lng', this.lng)
     console.log('country', this.country)
-    this.loadMap()
+    this.initMap()
     // this.loadMarker()
   },
 
   updated() {
-    this.loadMap()
+    this.initMap()
     console.log('upd lat', this.lat)
     console.log('upd lng', this.lng)
     console.log('upd country', this.country)
