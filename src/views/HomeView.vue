@@ -4,7 +4,7 @@ export default {}
 
 <template>
   <div class="container-fluid hero text-sm-start text-center">
-    <img src="@/assets/logo.svg" width="400px" height="400px" />
+    <img src="@/assets/logo.png" width="400px" height="400px" />
     <div>
       <h1>Bem vindo ao <span class="text-bold">Harpia Countries</span></h1>
       <h4>A nossa harpia vai te ajudar a encontrar o que procura</h4>
