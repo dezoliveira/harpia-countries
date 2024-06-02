@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import imageLogo from '@/assets/logo.png'
 export default {
   props: {
     lat: {
@@ -13,7 +14,14 @@ export default {
       type: Number,
       default: -55
     },
-    targetCountry: {}
+    targetCountry: {
+      type: Object,
+      default: function () {
+        return {
+          flag: 'JM'
+        }
+      }
+    }
   },
   data() {
     return {
@@ -26,22 +34,6 @@ export default {
 
   methods: {
     async initMap() {
-      // const map = this.$refs.map
-      // await new window.google.maps.Map(map, {
-      //   center: {
-      //     lat: this.lat,
-      //     lng: this.lng
-      //   },
-      //   zoom: 3
-      // })
-
-      // new Map(map, {
-      //   center: {
-      //     lat: this.lat,
-      //     lng: this.lng
-      //   },
-      //   zoom: 2
-      // })
       const { Map, InfoWindow } = await window.google.maps.importLibrary('maps')
       const { AdvancedMarkerElement } = await window.google.maps.importLibrary('marker')
 
@@ -64,35 +56,38 @@ export default {
         }
       })
 
-      const { flag, capital, name, currencies, languages, continents } = this.targetCountry[0]
+      // get values
+      const { flags, flag, capital, name, currencies, languages, continents, maps } =
+        this.targetCountry[0]
 
       const countryString = `
-        <div class="infoWindow">
-          <span>
-            <h4>Country: </h4>
-            <p>${name.common}</p>
-          </span>
-          <span>
-            <h4>Capital: </h4>
-            <p>${capital}</p>  
-          </span>
-          <span>
-            <h4>Moeda: </h4>
-            <p>${Object.keys(currencies)}</p>
-          </span>
-          <span>
-            <h4>Linguas: </h4>
-            <p>${Object.values(languages)}   
-          </span>
-          <span>
-            <h4>Bandeira: </h4>  
-            ${flag}
-          </span>
-          <span>
-            <h4>Continentes: </h4>  
-            ${continents}
-          </span>
+      <div class="card" style="width: 18rem;">
+        <img src="${flags.png}" alt="${flags.alt}" class="card-img-top" alt="..." width=80px />
+        <div class="card-body">
+          <h5 class="card-title">${name.common} ${flag}</h5>
+          
+          <p class="card-text mb-1">
+            <label><b>Capital:</b></label>
+            <span>${capital}</span>
+          </p>
+          <p class="card-text mb-1">
+            <label><b>Moeda:</b></label>
+            <span>${Object.keys(currencies)}</span>
+          </p>
+          <p class="card-text mb-1">
+          <label><b>Linguas:</b> </label>
+            <span>${Object.values(languages)}</span>
+          </p>
+          <p class="card-text mb-1">
+          <label><b>Continente:</b> </label>
+            <span>${continents}</span>
+          </p>
+
+          <a href="${maps.googleMaps}" class="btn btn-primary my-2">
+            Expandir
+          </a>
         </div>
+      </div>
       `
 
       // google maps info window
@@ -128,6 +123,7 @@ export default {
     console.log('country', this.country)
     this.initMap()
     // this.loadMarker()
+    console.log(this.targetCountry)
   },
 
   updated() {
@@ -139,9 +135,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 p {
   font-size: medium;
+  margin: 0;
+  padding: 0;
 }
 
 .mapContainer {
@@ -151,5 +149,16 @@ p {
 
 .infoWindow {
   width: 50vh;
+  color: red;
+}
+
+.infoWindow label {
+  font-weight: bold;
+  font-size: large;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
 }
 </style>

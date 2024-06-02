@@ -6,7 +6,7 @@ import { RouterLink } from 'vue-router'
     <div class="container-fluid p-0">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Brand</a>
+          <a class="navbar-brand" href="@/assets/logo.png">Brand</a>
           <button
             class="navbar-toggler"
             type="button"
