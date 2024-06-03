@@ -1,10 +1,12 @@
 <script>
 import SearchBar from '@/components/SearchBar.vue'
 import GoogleMaps from '@/components/GoogleMaps.vue'
+import CountryList from '@/components/CountryList.vue'
 export default {
   components: {
     SearchBar,
-    GoogleMaps
+    GoogleMaps,
+    CountryList
   },
 
   data() {
@@ -68,14 +70,7 @@ export default {
       :selected-value="this.selectedValue"
     />
     <div v-if="this.country && this.isShowList" class="col-lg-6 col-md-6 col-sm-6">
-      <ul v-for="c in this.country" :key="c.cioc" class="list-group">
-        <li @click="getValueList(c.name.common)" class="list-group-item list-group-item-action">
-          {{ c.name.common }}
-          <span class="">
-            <img :src="c.flags.png ? c.flags.png : ''" width="24px" />
-          </span>
-        </li>
-      </ul>
+      <CountryList :country="this.country" @click="getValueList(this.country[0].name.common)" />
     </div>
     <GoogleMaps
       :lat="this.country ? this.country[0].latlng[0] : undefined"
@@ -84,15 +79,4 @@ export default {
     />
   </div>
 </template>
-<style scoped>
-li {
-  transition: 0.4s ease-out;
-}
-li:hover {
-  cursor: pointer;
-}
-.list-group-item:hover {
-  background-color: #0d6efd;
-  color: #fff;
-}
-</style>
+<style scoped></style>
