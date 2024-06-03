@@ -69,9 +69,11 @@ export default {
       :input-text="this.country"
       :selected-value="this.selectedValue"
     />
-    <div v-if="this.country && this.isShowList" class="col-lg-6 col-md-6 col-sm-6">
-      <CountryList :country="this.country" @click="getValueList(this.country[0].name.common)" />
-    </div>
+    <CountryList
+      v-show="this.country && this.isShowList"
+      :country="this.country"
+      @get-country="getValueList"
+    />
     <GoogleMaps
       :lat="this.country ? this.country[0].latlng[0] : undefined"
       :lng="this.country ? this.country[0].latlng[1] : undefined"
