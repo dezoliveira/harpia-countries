@@ -10,13 +10,16 @@ export default {
   data() {
     return {
       country: '',
-      countries: []
+      countries: [],
+      isShowList: true,
+      selectedValue: ''
     }
   },
 
   methods: {
     async handleInput($event) {
       this.country = ''
+      this.selectedValue = ''
       let country = $event.target.value
 
       if (country.length > 3) {
@@ -31,6 +34,7 @@ export default {
     },
 
     getCountryName(country) {
+      this.selectedValue = country
       const filteredCountries = this.countries
         .map((newCountry) => {
           return newCountry
@@ -40,8 +44,14 @@ export default {
         })
 
       this.country = filteredCountries
+      this.isShowList = true
 
       console.log(filteredCountries)
+    },
+
+    getValueList(name) {
+      this.getCountryName(name)
+      this.isShowList = false
     }
   },
 
@@ -52,11 +62,18 @@ export default {
 </script>
 <template>
   <div class="container p-4 d-flex flex-column align-items-center justify-content-center gap-4">
-    <SearchBar @input="handleInput" :input-text="this.country" />
-    <div v-if="this.country">
-      <ul v-for="c in this.country" :key="c.cioc">
-        <li>
-          <h1 class="hover">{{ c.name.common }}</h1>
+    <SearchBar
+      @input="handleInput"
+      :input-text="this.country"
+      :selected-value="this.selectedValue"
+    />
+    <div v-if="this.country && this.isShowList" class="col-lg-6 col-md-6 col-sm-6">
+      <ul v-for="c in this.country" :key="c.cioc" class="list-group">
+        <li @click="getValueList(c.name.common)" class="list-group-item list-group-item-action">
+          {{ c.name.common }}
+          <span class="">
+            <img :src="c.flags.png ? c.flags.png : ''" width="24px" />
+          </span>
         </li>
       </ul>
     </div>
@@ -67,4 +84,15 @@ export default {
     />
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+li {
+  transition: 0.4s ease-out;
+}
+li:hover {
+  cursor: pointer;
+}
+.list-group-item:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+</style>

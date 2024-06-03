@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['inputText'],
+  props: ['inputText', 'selectedValue'],
 
   data() {
     return {
@@ -14,11 +14,12 @@ export default {
     <div class="col col-lg-8 col-md-8 col-sm-12 searchBar">
       <label for="exampleFormControlInput1" class="form-label">Pesquisar</label>
       <input
-        type="email"
-        class="form-control"
+        type="text"
         id="countryInput"
         placeholder="Ex: Brazil"
+        class="form-control"
         :v-model="inputText"
+        :value="selectedValue"
       />
       <button class="btn btn-outline-secondary">Pesquisar</button>
     </div>
