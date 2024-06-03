@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import imageLogo from '@/assets/logo.png'
 export default {
   props: {
     lat: {
