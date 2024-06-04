@@ -1,5 +1,6 @@
 <template>
   <div ref="map" class="mapContainer"></div>
+  <span>{{ targetCountry }}</span>
 </template>
 
 <script>
@@ -14,20 +15,38 @@ export default {
       default: -55
     },
     targetCountry: {
-      type: Object,
-      default: function () {
-        return {
-          flag: 'JM'
+      type: Array,
+      default: () => [
+        {
+          flags: {
+            png: 'https://flagcdn.com/w320/br.png'
+          },
+          name: {
+            common: 'Brazil'
+          },
+          capital: 'Brasilia',
+          currencies: {
+            BRL: {
+              name: 'Brazilian real'
+            }
+          },
+          languages: {
+            por: 'Portuguese'
+          },
+          continents: 'South America',
+          maps: {
+            googleMaps: 'https://goo.gl/maps/waCKk21HeeqFzkNC9'
+          }
         }
-      }
+      ]
     }
   },
   data() {
     return {
-      country: {
-        lat: -10,
-        lng: -55
-      }
+      // country: {
+      //   lat: -10,
+      //   lng: -55
+      // }
     }
   },
 
@@ -64,7 +83,7 @@ export default {
         <img src="${flags.png}" alt="${flags.alt}" class="card-img-top" alt="..." width=80px />
         <div class="card-body">
           <h5 class="card-title">${name.common} ${flag}</h5>
-          
+
           <p class="card-text mb-1">
             <label><b>Capital:</b></label>
             <span>${capital}</span>
@@ -122,7 +141,7 @@ export default {
     console.log('country', this.country)
     this.initMap()
     // this.loadMarker()
-    console.log(this.targetCountry)
+    console.log('target country', this.targetCountry)
   },
 
   updated() {
