@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['country', 'getValueList'],
+  props: ['country'],
 
   methods: {
     handleCountryName(name) {
