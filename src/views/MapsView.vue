@@ -1,7 +1,12 @@
 <script>
+// components
 import SearchBar from '@/components/SearchBar.vue'
 import GoogleMaps from '@/components/GoogleMaps.vue'
 import CountryList from '@/components/CountryList.vue'
+
+// vue
+import { mapState } from 'vuex'
+
 export default {
   components: {
     SearchBar,
@@ -12,7 +17,6 @@ export default {
   data() {
     return {
       country: '',
-      countries: [],
       isShowList: true,
       selectedValue: ''
     }
@@ -29,12 +33,6 @@ export default {
       }
     },
 
-    async getCountries() {
-      const response = await fetch('https://restcountries.com/v3.1/all')
-      const data = await response.json()
-      this.countries = data
-    },
-
     getCountryName(country) {
       this.selectedValue = country
       const filteredCountries = this.countries
@@ -47,8 +45,6 @@ export default {
 
       this.country = filteredCountries
       this.isShowList = true
-
-      console.log(filteredCountries)
     },
 
     getValueList(name) {
@@ -57,8 +53,9 @@ export default {
     }
   },
 
-  mounted() {
-    this.getCountries()
+  // call states on store
+  computed: {
+    ...mapState(['countries'])
   }
 }
 </script>

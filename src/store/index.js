@@ -7,7 +7,7 @@ export default createStore({
 
   mutations: {
     loadCountries(state, countries) {
-      state.countries = state
+      state.countries = countries
     }
   },
 
