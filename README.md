@@ -48,3 +48,10 @@ Acesse: [Harpia Countries](harpia-countries.vercel.app)
 - git clone https://www.github.com/dezoliveira/harpia-countries
 - npm install
 - npm run dev
+
+#### Como Rodar o Docker
+
+- git clone https://www.github.com/dezoliveira/harpia-countries
+- npm install -g docker
+- docker build -t vuejs-cookbook/dockerize-vuejs-app .
+- docker run -it -p 8080:80 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
