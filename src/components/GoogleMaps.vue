@@ -1,6 +1,5 @@
 <template>
   <div ref="map" class="mapContainer"></div>
-  <span>{{ targetCountry }}</span>
 </template>
 
 <script>
@@ -41,14 +40,7 @@ export default {
       ]
     }
   },
-  data() {
-    return {
-      // country: {
-      //   lat: -10,
-      //   lng: -55
-      // }
-    }
-  },
+  data() {},
 
   methods: {
     async initMap() {
@@ -136,19 +128,11 @@ export default {
   },
 
   mounted() {
-    console.log('lat', this.lat)
-    console.log('lng', this.lng)
-    console.log('country', this.country)
     this.initMap()
-    // this.loadMarker()
-    console.log('target country', this.targetCountry)
   },
 
   updated() {
     this.initMap()
-    console.log('upd lat', this.lat)
-    console.log('upd lng', this.lng)
-    console.log('upd country', this.country)
   }
 }
 </script>

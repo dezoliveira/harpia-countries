@@ -2,11 +2,7 @@
 export default {
   props: ['inputText', 'selectedValue'],
 
-  data() {
-    return {
-      // text: this.inputText
-    }
-  }
+  data() {}
 }
 </script>
 <template>

@@ -62,9 +62,9 @@ export default {
 <template>
   <div class="container p-4 d-flex flex-column align-items-center justify-content-center gap-4">
     <SearchBar
-      @input="handleInput"
       :input-text="this.country"
       :selected-value="this.selectedValue"
+      @input="handleInput"
     />
     <CountryList
       v-show="this.country && this.isShowList"
