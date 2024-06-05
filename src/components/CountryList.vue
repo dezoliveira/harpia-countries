@@ -31,7 +31,7 @@ li:hover {
   cursor: pointer;
 }
 .list-group-item:hover {
-  background-color: #0d6efd;
+  background-color: #6826a6;
   color: #fff;
 }
 </style>

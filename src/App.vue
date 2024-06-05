@@ -19,4 +19,12 @@ export default {
   <RouterView />
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@import 'assets/custom.scss';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap/dist/css/bootstrap.css';
+
+body {
+  margin: 0;
+}
+</style>

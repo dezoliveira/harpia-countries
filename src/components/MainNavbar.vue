@@ -4,9 +4,11 @@ import { RouterLink } from 'vue-router'
 <template>
   <header>
     <div class="container-fluid p-0">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-white bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="@/assets/logo.png">Brand</a>
+          <a class="navbar-brand" href="/">
+            <img src="@/assets/logo.png" class="logo" />
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -23,6 +25,7 @@ import { RouterLink } from 'vue-router'
               <li class="nav-item">
                 <RouterLink to="/">Home</RouterLink>
               </li>
+              /
               <li class="nav-item">
                 <RouterLink to="/maps">Maps</RouterLink>
               </li>
@@ -37,4 +40,9 @@ import { RouterLink } from 'vue-router'
 /* .navbar-collapse {
   height: 100vh;
 } */
+.logo {
+  width: 32px;
+  background-color: aliceblue;
+  border-radius: 50%;
+}
 </style>

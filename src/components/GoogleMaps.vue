@@ -147,6 +147,7 @@ p {
 .mapContainer {
   width: 70vh;
   height: 70vh;
+  border-radius: 15px;
 }
 
 .infoWindow {

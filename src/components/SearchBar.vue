@@ -8,7 +8,7 @@ export default {
 <template>
   <div class="container-fluid search-wrapper">
     <div class="col col-lg-8 col-md-8 col-sm-12 searchBar">
-      <label for="exampleFormControlInput1" class="form-label">Pesquisar</label>
+      <label for="exampleFormControlInput1" class="form-label d-sm-block">Pesquisar</label>
       <input
         type="text"
         id="countryInput"
@@ -17,7 +17,7 @@ export default {
         :v-model="inputText"
         :value="selectedValue"
       />
-      <button class="btn btn-outline-secondary">Pesquisar</button>
+      <button class="btn btn-secondary">Pesquisar</button>
     </div>
   </div>
 </template>
