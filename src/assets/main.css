@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import './base.css';
 
+.router-link-active {
+  background-color: #ff7214 !important;
+  padding: 8px;
+  color: #6826a6 !important;
+  border-radius: 5px;
+}
+
 #app {
   background-color: #111827;
   margin: 0 auto;
