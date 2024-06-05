@@ -8,7 +8,7 @@ export default {
 <template>
   <div class="container-fluid search-wrapper">
     <div class="col col-lg-8 col-md-8 col-sm-12 searchBar">
-      <label for="exampleFormControlInput1" class="form-label d-sm-block">Pesquisar</label>
+      <label for="exampleFormControlInput1" class="form-label d-sm-block d-none">Pesquisar:</label>
       <input
         type="text"
         id="countryInput"
@@ -17,7 +17,11 @@ export default {
         :v-model="inputText"
         :value="selectedValue"
       />
-      <button class="btn btn-secondary">Pesquisar</button>
+      <button class="btn btn-secondary">
+        <i>
+          <fa-icon icon="search-location"></fa-icon>
+        </i>
+      </button>
     </div>
   </div>
 </template>
@@ -34,5 +38,9 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 15px;
+}
+
+i {
+  color: #6826a6;
 }
 </style>
