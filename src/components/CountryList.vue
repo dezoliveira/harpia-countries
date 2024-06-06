@@ -1,9 +1,11 @@
 <template>
   <div class="col-lg-6 col-md-6 col-sm-6">
-    <ul v-for="c in this.country" :key="c.cioc" class="list-group">
+    <ul class="list-group">
       <li
+        v-for="c in this.country"
+        :key="c.cioc"
         class="list-group-item list-group-item-action bg-primary"
-        @click="handleCountryName(c.name.common)"
+        @click="handleCountryId(c.cioc)"
       >
         {{ c.name.common }}
         <span class="">
@@ -19,8 +21,8 @@ export default {
   props: ['country'],
 
   methods: {
-    handleCountryName(name) {
-      this.$emit('get-country', name)
+    handleCountryId(id) {
+      this.$emit('get-country', id)
     }
   }
 }

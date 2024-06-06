@@ -34,21 +34,32 @@ export default {
     },
 
     getCountryName(country) {
+      console.log(country)
       this.selectedValue = country
       const filteredCountries = this.countries
         .map((newCountry) => {
           return newCountry
         })
         .filter((c) => {
-          return c.name.common.toLowerCase().includes(country.toLowerCase())
+          return c.name.common.includes(country)
         })
 
       this.country = filteredCountries
       this.isShowList = true
     },
 
-    getValueList(name) {
-      this.getCountryName(name)
+    getCountryById(id) {
+      const filteredCountries = this.countries
+        .map((newCountry) => {
+          return newCountry
+        })
+        .filter((c) => {
+          return c.cioc === id
+        })
+
+      this.country = filteredCountries
+      console.log(this.country)
+      this.selectedValue = filteredCountries[0].name.common
       this.isShowList = false
     }
   },
@@ -69,11 +80,11 @@ export default {
     <CountryList
       v-show="this.country && this.isShowList"
       :country="this.country"
-      @get-country="getValueList"
+      @get-country="getCountryById"
     />
     <GoogleMaps
-      :lat="this.country ? this.country[0].latlng[0] : undefined"
-      :lng="this.country ? this.country[0].latlng[1] : undefined"
+      :lat="this.country ? this.country[0].capitalInfo.latlng[0] : undefined"
+      :lng="this.country ? this.country[0].capitalInfo.latlng[1] : undefined"
       :target-country="this.country"
     />
   </div>
