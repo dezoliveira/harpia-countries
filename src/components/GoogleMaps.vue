@@ -7,11 +7,11 @@ export default {
   props: {
     lat: {
       type: Number,
-      default: -10
+      default: -15.79
     },
     lng: {
       type: Number,
-      default: -55
+      default: -47.88
     },
     targetCountry: {
       type: Array,
