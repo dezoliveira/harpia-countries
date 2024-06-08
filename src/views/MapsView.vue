@@ -41,7 +41,7 @@ export default {
           return newCountry
         })
         .filter((c) => {
-          return c.name.common.includes(country)
+          return c.name.common.toLowerCase().includes(country.toLowerCase())
         })
 
       this.country = filteredCountries
