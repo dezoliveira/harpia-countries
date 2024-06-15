@@ -34,7 +34,7 @@ export default {
     },
 
     getCountryName(country) {
-      console.log(country)
+      // console.log(country)
       this.selectedValue = country
       const filteredCountries = this.countries
         .map((newCountry) => {
@@ -58,7 +58,7 @@ export default {
         })
 
       this.country = filteredCountries
-      console.log(this.country)
+      // console.log(this.country)
       this.selectedValue = filteredCountries[0].name.common
       this.isShowList = false
     }
@@ -82,11 +82,15 @@ export default {
       :country="this.country"
       @get-country="getCountryById"
     />
-    <GoogleMaps
+    <!-- <GoogleMaps
       :lat="this.country ? this.country[0].capitalInfo.latlng[0] : undefined"
       :lng="this.country ? this.country[0].capitalInfo.latlng[1] : undefined"
       :target-country="this.country"
-    />
+    /> -->
+    <!-- <GoogleMaps /> -->
+     <GoogleMaps 
+      :target-country="this.country"
+     />
   </div>
 </template>
 <style scoped></style>
