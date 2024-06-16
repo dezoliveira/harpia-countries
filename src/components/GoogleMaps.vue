@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUpdated, computed, reactive  } from 'vue'
+import { onUpdated, reactive } from 'vue'
 import { GoogleMap, Marker, InfoWindow } from 'vue3-google-map'
 
 const props = defineProps({
@@ -8,56 +8,38 @@ const props = defineProps({
   targetCountry: []
 })
 
-// const { 
-//   flags,
-//   flag,
-//   capital,
-//   name,
-//   currencies,
-//   languages,
-//   continents,
-//   maps 
-// } = reactive({ ...props.targetCountry[0] })  
-
-// onUpdated(() => {
-//   // text content should be the same as current `count.value`
-//   const { 
-//   flags,
-//   flag,
-//   capital,
-//   name,
-//   currencies,
-//   languages,
-//   continents,
-//   maps
-//   } = targetCountry[0]
-//   console.log(flags)
-// })
-
-// // a computed ref
-// const country = computed(() => {
-//   console.log(this.targetCountry[0])
-//   return this.targetCountry[0]
-// })
-
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
-const center = { 
+let center = {
   lat: -15.793889,
   lng: -47.882778
 }
 
-const markerOptions = { position: center, label: 'L', title: 'LADY LIBERTY' }
+let markerOptions = { position: center, label: 'BR', title: 'BRAZIL' }
 
+onUpdated(() => {
+  if (props.targetCountry[0] !== undefined) {
+    const { capitalInfo, flag, name } = props.targetCountry[0]
+
+    center = reactive({
+      lat: capitalInfo.latlng[0],
+      lng: capitalInfo.latlng[1]
+    })
+
+    markerOptions = reactive({
+      position: {
+        lat: capitalInfo.latlng[0],
+        lng: capitalInfo.latlng[1]
+      },
+      label: flag,
+      title: String(name).toLowerCase()
+    })
+  }
+})
 </script>
 
 <template>
-  <GoogleMap
-  :api-key="apiKey"
-  style="width: 100%; height: 500px"
-  :center="center"
-  :zoom="3"
-  >
+  <GoogleMap :api-key="apiKey" style="width: 100%; height: 500px" :center="center" :zoom="3">
     <Marker :options="markerOptions">
       <div v-if="targetCountry.length">
         <InfoWindow>
@@ -67,8 +49,4 @@ const markerOptions = { position: center, label: 'L', title: 'LADY LIBERTY' }
     </Marker>
   </GoogleMap>
 </template>
-<style scoped>
-  h1 {
-    color: #000;
-  }
-</style>
+<style scoped></style>

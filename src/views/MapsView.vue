@@ -58,7 +58,7 @@ export default {
         })
 
       this.country = filteredCountries
-      // console.log(this.country)
+      console.log(this.country)
       this.selectedValue = filteredCountries[0].name.common
       this.isShowList = false
     }
@@ -88,9 +88,7 @@ export default {
       :target-country="this.country"
     /> -->
     <!-- <GoogleMaps /> -->
-     <GoogleMaps 
-      :target-country="this.country"
-     />
+    <GoogleMaps :target-country="this.country" />
   </div>
 </template>
 <style scoped></style>
