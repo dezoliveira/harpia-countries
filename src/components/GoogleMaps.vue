@@ -5,7 +5,7 @@ import { GoogleMap, Marker, InfoWindow } from 'vue3-google-map'
 const props = defineProps({
   lat: Number,
   lng: Number,
-  targetCountry: []
+  targetCountry: Object
 })
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -39,14 +39,57 @@ onUpdated(() => {
 </script>
 
 <template>
-  <GoogleMap :api-key="apiKey" style="width: 100%; height: 500px" :center="center" :zoom="3">
+  <GoogleMap :api-key="apiKey" class="mapContainer" :center="center" :zoom="3">
     <Marker :options="markerOptions">
       <div v-if="targetCountry.length">
         <InfoWindow>
-          <h1>{{ targetCountry[0].name.common }}</h1>
+          <div
+            v-for="country in targetCountry"
+            :key="country.cioc"
+            class="card"
+            style="width: 18rem"
+          >
+            <img :src="country.flags.png" alt="" class="card-img-top" width="80px" />
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ country.name.common }}
+              </h5>
+
+              <p class="card-text mb-1">
+                <label><b>Capital:</b></label>
+                <span>{{ country.capital }}</span>
+              </p>
+              <p class="card-text mb-1">
+                <label><b>Moeda:</b></label>
+                <span>{{ Object.keys(country.currencies) }}</span>
+              </p>
+              <p class="card-text mb-1">
+                <label><b>Linguas:</b> </label>
+                <span>{{ Object.values(country.languages) }}</span>
+              </p>
+              <p class="card-text mb-1">
+                <label><b>Continente:</b> </label>
+                <span>{{ country.continents }}</span>
+              </p>
+
+              <a :href="country.maps.googleMaps" target="_blank" class="btn btn-primary my-2">
+                Expandir
+              </a>
+            </div>
+          </div>
         </InfoWindow>
       </div>
     </Marker>
   </GoogleMap>
 </template>
-<style scoped></style>
+<style scoped>
+h1 {
+  color: black;
+}
+
+.mapContainer {
+  width: 70vh;
+  height: 70vh;
+  border-radius: 15px;
+}
+</style>
